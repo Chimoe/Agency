@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- Fix view to device-width -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title>Agency</title>
+    <!-- Bootstrap 4 CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- FontAwesome CSS + Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Underscore.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <!-- jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<body>
+
+<nav class="navbar sticky-top navbar-expand-md navbar-light" style="background-color: moccasin;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">My APL <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Branches</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " href="#">To be continued</a>
+            </li>
+        </ul>
+    </div>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item disabled">
+            <h3>Agency</h3>
+        </li>
+    </ul>
+
+    <a class="navbar-brand" href="#">
+        <img>
+    </a>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block sidebar" style="background-color: lightcyan;">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            Complete List-Updated <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Unknown Patrons
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Permanent Bannings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Active Bannings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Facility Incidents
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Stats Sheet
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Unknown Sheet
+                        </a>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>User Center</span>
+                    <a class="d-flex align-items-center text-muted" href="test.html">
+                        <span data-feather="plus-circle"></span>
+                    </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Main
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap border-bottom" id="main-body">
+                <div class="container" id="app"></div>
+
+                <div class="container" id="info">
+                    <h2 style="padding-top: 30px">Previous Excel Table</h2>
+                    <p>Type something in the input field to search the table :</p>
+                    <input class="form-control" id="myInput" type="text" placeholder="Search">
+                    <br>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                        <tr>
+                            <th style="width: 5%">Date</th>
+                            <th style="width: 5%">Branch</th>
+                            <th style="width: 5%">Time</th>
+                            <th style="width: auto">Additional Info / Notes</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+
+                        <tr>
+                            <td>2010/04/06</td>
+                            <td>APLM</td>
+                            <td></td>
+                            <td>Brad (possible name) Talking loudly on cell phone. Asked several times to leave to appropriate
+                                area. Verbally aggressive to staff. Asked to leave and not return
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>2010/04/10</td>
+                            <td>APLH</td>
+                            <td></td>
+                            <td>Young male stole bike from outside library, two others possibly involved.  All 3 known for
+                                bullying others (Black Pre-teen boys)
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>2010/09/22</td>
+                            <td>none listed</td>
+                            <td></td>
+                            <td>8 teens (7 male, 1 female) thought to have stolen Wii games from library program</td>
+
+                        </tr>
+                        <tr class="table-danger">
+                            <td>2016/12/10</td>
+                            <td>APLW</td>
+                            <td>12:30pm</td>
+                            <td>4 youth throwing rocks at cars. (One named Tyrese) Told to stop and not to come to library
+                                for remainder of day.
+                            </td>
+                        </tr>
+                        <tr class="table-danger">
+                            <td>2016/12/12</td>
+                            <td>APLM</td>
+                            <td>11:35am</td>
+                            <td>Couple arguing with male pushing female. Staff told male he had to leave (male stated he was
+                                bipolar) and they left towards Elk St. APD called and intervened from outside.
+                            </td>
+                        </tr>
+                        <tr class="table-danger">
+                            <td>2018/10/31</td>
+                            <td>APLW</td>
+                            <td>12:15pm</td>
+                            <td>An unknown male patron was loud and "talking to himself", but initially was able to quiet
+                                down when prompted by staff. Soon after that though, this patron slammed several computer
+                                monitors over and left the library cursing and screaming.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                let value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+</div>
+</body>
+</html>
