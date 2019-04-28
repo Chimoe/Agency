@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <title>Complete List Updated Using Vue</title>
+
+    <!-- Required Stylesheets -->
+    <link
+            type="text/css"
+            rel="stylesheet"
+            href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+            type="text/css"
+            rel="stylesheet"
+            href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
+    />
+
+    <!-- Required scripts -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+    <!-- FontAwesome CSS + Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <!-- Underscore.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <!-- jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar sticky-top navbar-expand-md navbar-light" style="background-color: moccasin;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">My APL <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Branches</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link " href="#">To be continued</a>
+            </li>
+        </ul>
+    </div>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item disabled">
+            <h3>Agency</h3>
+        </li>
+    </ul>
+
+    <a class="navbar-brand" href="#">
+        <img>
+    </a>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block sidebar" style="background-color: lightcyan;">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Complete%20List-Updated.html">
+                            Complete List-Updated <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Unknown%20Patrons.html">
+                            Unknown Patrons
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Permanent%20Bannings.html">
+                            Permanent Bannings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Active%20Bannings.html">
+                            Active Bannings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Facility%20Incidents.html">
+                            Facility Incidents
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Stats%20Sheet.html">
+                            Stats Sheet
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Memo.html">
+                            Memo
+                        </a>
+                    </li>
+                </ul>
+
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span>User Center</span>
+                    <a class="d-flex align-items-center text-muted" href="CLU_Vue.html">
+                        <span data-feather="plus-circle"></span>
+                    </a>
+                </h6>
+                <ul class="nav flex-column mb-2">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Main
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap border-bottom" id="main-body">
+                <div id="app">
+                    <b-container fluid>
+                        <!-- User Interface controls -->
+                        <b-row>
+                            <b-col md="4" class="my-1">
+                                <b-form-group label-cols-sm="3" label="Filter" class="mb-0">
+                                    <b-input-group>
+                                        <b-form-input v-model="filter" placeholder="Type to Search"></b-form-input>
+                                        <b-input-group-append>
+                                            <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+                                        </b-input-group-append>
+                                    </b-input-group>
+                                </b-form-group>
+                            </b-col>
+
+                            <b-col md="6" class="my-1">
+                                <b-form-group label-cols-sm="3" label="Sort" class="mb-0">
+                                    <b-input-group>
+                                        <b-form-select v-model="sortBy" :options="sortOptions">
+                                            <option slot="first" :value="null">-- none --</option>
+                                        </b-form-select>
+                                        <b-form-select v-model="sortDesc" :disabled="!sortBy" slot="append">
+                                            <option :value="false">Asc</option>
+                                            <option :value="true">Desc</option>
+                                        </b-form-select>
+                                    </b-input-group>
+                                </b-form-group>
+                            </b-col>
+
+                            <b-col md="6" class="my-1">
+                                <b-form-group label-cols-sm="3" label="Sort direction" class="mb-0">
+                                    <b-input-group>
+                                        <b-form-select v-model="sortDirection" slot="append">
+                                            <option value="asc">Asc</option>
+                                            <option value="desc">Desc</option>
+                                            <option value="last">Last</option>
+                                        </b-form-select>
+                                    </b-input-group>
+                                </b-form-group>
+                            </b-col>
+
+                            <b-col md="6" class="my-1">
+                                <b-form-group label-cols-sm="3" label="Per page" class="mb-0">
+                                    <b-form-select v-model="perPage" :options="pageOptions"></b-form-select>
+                                </b-form-group>
+                            </b-col>
+                        </b-row>
+
+                        <!-- Main table element -->
+                        <b-table
+                                show-empty small
+                                stacked="md"
+                                :items="items"
+                                :fields="fields"
+                                :current-page="currentPage"
+                                :per-page="perPage"
+                                :filter="filter"
+                                :sort-by.sync="sortBy"
+                                :sort-desc.sync="sortDesc"
+                                :sort-direction="sortDirection"
+                                @filtered="onFiltered"
+                        >
+                            <template slot="name" slot-scope="row">
+                                {{ row.value.first }} {{ row.value.last }}
+                            </template>
+
+                            <template slot="Banned" slot-scope="row">
+                                {{ row.value ? 'Yes :(' : 'No :)' }}
+                            </template>
+
+                            <template slot="actions" slot-scope="row">
+                                <b-button size="sm" @click="info(row.item, row.index, $event.target)" class="mr-1">
+                                    Info modal
+                                </b-button>
+                                <b-button size="sm" @click="row.toggleDetails">
+                                    {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
+                                </b-button>
+                            </template>
+
+                            <template slot="row-details" slot-scope="row">
+                                <b-card>
+                                    <b-row class="sm-2">
+                                        <b-col sm="3" class="text-sm-right"><b>Detail:</b></b-col>
+                                        <b-col>{{ row.item.Detail }}</b-col>
+                                    </b-row>
+                                </b-card>
+                            </template>
+                        </b-table>
+
+                        <b-row>
+                            <b-col md="6" class="my-1">
+                                <b-pagination
+                                        v-model="currentPage"
+                                        :total-rows="totalRows"
+                                        :per-page="perPage"
+                                        class="my-0"
+                                ></b-pagination>
+                            </b-col>
+                        </b-row>
+
+                        <!-- Info modal -->
+                        <b-modal id="modal-info" @hide="resetModal" :title="modalInfo.title" ok-only>
+                            <pre>{{ modalInfo.content }}</pre>
+                        </b-modal>
+                    </b-container>
+                </div>
+
+                <!-- Start running your app -->
+                <script>
+
+                    window.app = new Vue({
+                        el: '#app',
+                        data() {
+                            return {
+                                items: [
+                                    {
+                                        Banned: false,
+                                        date: 20170211,
+                                        name: {first: 'Dickerson', last: 'Macdonald'},
+                                        Branch: 'APLH',
+                                        Detail: 'with J. Peppers boxing in the library. Told to stop and leave for the day'
+                                    },
+                                    {
+                                        Banned: false, date: 20170131, name: {first: 'Larsen', last: 'Shaw'}, Branch: 'APLH',
+                                        Detail: 'Got splinter in finger from restroom key tag - refused any treatment.'
+                                    },
+                                    {
+                                        Banned: false,
+                                        date: 20150114,
+                                        name: {first: 'Mini', last: 'Navarro'},
+                                        Branch: 'APLD', Detail: 'Being loud, asked to quite down'
+                                    },
+                                    {
+                                        Banned: false,
+                                        date: 20140911,
+                                        name: {first: 'Geneva', last: 'Wilson'},
+                                        Branch: 'APLM',
+                                        Detail: 'Being loud in computer lab, asked to quiet down '
+                                    },
+                                    {
+                                        Banned: true, date: 20150319, name: {first: 'Jami', last: 'Carney'}, Branch: 'APLM',
+                                        Detail: 'In stall with female. Verbally Threatened staff severly when confronted. APD called.',
+                                        _rowVariant: 'danger'
+                                    },
+                                    {
+                                        Banned: false, date: 20130423, name: {first: 'Essie', last: 'Dunlap'}, Branch: 'APLD',
+                                        Detail: 'Viewing Inappropriate material on computers'
+                                    },
+                                    {
+                                        Banned: true,
+                                        date: 20130425,
+                                        name: {first: 'Thor', last: 'Macdonald'},
+                                        Branch: 'APLH',
+                                        Detail: 'Banned Patron on property'
+                                    },
+                                    {
+                                        Banned: true,
+                                        date: 20150916,
+                                        name: {first: 'Larsen', last: 'Shaw'}, Branch: 'APLM', Detail: 'Came in yelling about who hit their sister (mom came later demanding the same) APD Called in'
+                                    },
+                                    {
+                                        Banned: false,
+                                        date: 20151207,
+                                        name: {first: 'Mitzi', last: 'Navarro'},
+                                        Branch: 'APLM',
+                                        Detail: 'Came back while banned. General disturbances and yelling again. '
+                                    },
+                                    {
+                                        Banned: false,
+                                        date: 20151206,
+                                        name: {first: 'Genevieve', last: 'Wilson'}, Branch: 'APLM',
+
+                                        Detail: 'Yelling throughout the library.  General Disturbance. Banned for 3 days'
+                                    },
+                                    {
+                                        Banned: true, date: 20141006, name: {first: 'John', last: 'Carney'}, Branch: 'APLM',
+                                        Detail: 'Yelling throughout the library, swearing at staff. Asked to leave.'
+                                    },
+                                    {
+                                        Banned: false, date: 20180305, name: {first: 'Dick', last: 'Dunlap'}, Branch: 'APLM',
+                                        Detail: 'Found by LEAD officers in restroom intoxicated. Now enrolled in LEAD program ', _rowVariant: 'success'
+                                    }
+                                ],
+                                fields: [
+                                    {key: 'name', label: 'Person Full name', sortable: true, sortDirection: 'desc'},
+                                    {key: 'date', label: 'Incident date', sortable: true, class: 'text-center'},
+                                    {key: 'Banned', label: 'is Banned'},
+                                    {key: 'Branch', label: 'Branch'},
+                                    {key: 'actions', label: 'Actions'}
+                                ],
+                                totalRows: 1,
+                                currentPage: 1,
+                                perPage: 15,
+                                pageOptions: [10,15,50,100],
+                                sortBy: null,
+                                sortDesc: false,
+                                sortDirection: 'asc',
+                                filter: null,
+                                modalInfo: {title: '', content: ''}
+                            }
+                        },
+                        computed: {
+                            sortOptions() {
+                                // Create an options list from our fields
+                                return this.fields
+                                    .filter(f => f.sortable)
+                                    .map(f => {
+                                        return {text: f.label, value: f.key}
+                                    })
+                            }
+                        },
+                        mounted() {
+                            // Set the initial number of items
+                            this.totalRows = this.items.length
+                        },
+                        methods: {
+                            info(item, index, button) {
+                                this.modalInfo.title = `Row index: ${index}`;
+                                this.modalInfo.content = JSON.stringify(item, null, 2);
+                                this.$root.$emit('bv::show::modal', 'modalInfo', button)
+                            },
+                            resetModal() {
+                                this.modalInfo.title = '';
+                                this.modalInfo.content = ''
+                            },
+                            onFiltered(filteredItems) {
+                                // Trigger pagination to update the number of buttons/pages due to filtering
+                                this.totalRows = filteredItems.length;
+                                this.currentPage = 1
+                            }
+                        }
+
+
+                    })
+                </script>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
